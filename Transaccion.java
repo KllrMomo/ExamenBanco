@@ -1,22 +1,25 @@
 
 package bake.examenbanco;
 
-public abstract class Transaccion {
-    protected String numeroIdentidadCliente;
-    protected double monto;
+public class Transaccion {
+    private String numeroIdentidadCliente;
+    private String numeroCuenta;
+    private double monto;
 
     // Constructor
-    public Transaccion(String numeroIdentidadCliente, double monto) {
+    public Transaccion(String numeroIdentidadCliente, String numeroCuenta, double monto) {
         this.numeroIdentidadCliente = numeroIdentidadCliente;
+        this.numeroCuenta = numeroCuenta;
         this.monto = monto;
     }
-    
-    //Metodo 
-    public abstract void realizarTransaccion();
     
     // Getters
     public String getNumeroIdentidadCliente() {
         return numeroIdentidadCliente;
+    }
+
+    public String getNumeroCuenta() {
+        return numeroCuenta;
     }
 
     public double getMonto() {
@@ -26,6 +29,10 @@ public abstract class Transaccion {
     // Setters
     public void setNumeroIdentidadCliente(String numeroIdentidadCliente) {
         this.numeroIdentidadCliente = numeroIdentidadCliente;
+    }
+
+    public void setNumeroCuenta(String numeroCuenta) {
+        this.numeroCuenta = numeroCuenta;
     }
 
     public void setMonto(double monto) {
