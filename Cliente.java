@@ -2,14 +2,14 @@
 package bake.examenbanco;
 
 public class Cliente {
-    private int id;
+    private String id;
     private String nombre;
     private String apellidos;
     private char sexo;
     private int edad;
     private ListaSE<Cuenta> cuentas;
 
-    public Cliente(int id, String nombre, String apellidos, char sexo, int edad) {
+    public Cliente(String id, String nombre, String apellidos, char sexo, int edad) {
         this.id = id;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -37,7 +37,7 @@ public class Cliente {
 
     // Getters y setters
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
@@ -58,6 +58,10 @@ public class Cliente {
     }
 
     public ListaSE<Cuenta> getCuentas() {
-        return cuentas;
+        ListaSE<Cuenta> listaCuentas = new ListaSE<>();
+        for (int i = 0; i < cuentas.Longitud(); i++) {
+            listaCuentas.Adiconar(cuentas.Obtener(i));
+        }
+        return listaCuentas;
     }
 }
