@@ -2,11 +2,11 @@
 package bake.examenbanco;
 
 public class Cuenta {
-    private int numeroCuenta;
+    private String numeroCuenta;
     private double saldo;
     private String moneda;
 
-    public Cuenta(int numeroCuenta, double saldo, String moneda) {
+    public Cuenta(String numeroCuenta, double saldo, String moneda) {
         this.numeroCuenta = numeroCuenta;
         this.saldo = saldo;
         this.moneda = moneda;
@@ -14,7 +14,7 @@ public class Cuenta {
 
     // Getters y setters
 
-    public int getNumeroCuenta() {
+    public String getNumeroCuenta() {
         return numeroCuenta;
     }
 
