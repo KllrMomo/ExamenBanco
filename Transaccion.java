@@ -3,11 +3,11 @@ package bake.examenbanco;
 
 public class Transaccion {
     private String numeroIdentidadCliente;
-    private int numeroCuenta;
+    private String numeroCuenta;
     private double monto;
 
     // Constructor
-    public Transaccion(String numeroIdentidadCliente, int numeroCuenta, double monto) {
+    public Transaccion(String numeroIdentidadCliente, String numeroCuenta, double monto) {
         this.numeroIdentidadCliente = numeroIdentidadCliente;
         this.numeroCuenta = numeroCuenta;
         this.monto = monto;
@@ -18,7 +18,7 @@ public class Transaccion {
         return numeroIdentidadCliente;
     }
 
-    public int getNumeroCuenta() {
+    public String getNumeroCuenta() {
         return numeroCuenta;
     }
 
@@ -31,7 +31,7 @@ public class Transaccion {
         this.numeroIdentidadCliente = numeroIdentidadCliente;
     }
 
-    public void setNumeroCuenta(int numeroCuenta) {
+    public void setNumeroCuenta(String numeroCuenta) {
         this.numeroCuenta = numeroCuenta;
     }
 
