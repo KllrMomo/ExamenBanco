@@ -12,7 +12,7 @@ public abstract class Transaccion {
     }
     
     //Metodo 
-    public abstract String obtenerInformacion();
+    public abstract void realizarTransaccion();
     
     // Getters
     public String getNumeroIdentidadCliente() {
