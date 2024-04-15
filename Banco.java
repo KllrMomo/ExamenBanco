@@ -67,9 +67,9 @@ public class Banco {
     }
 
     // Método para realizar un retiro de una cuenta
-    public void retirar(String numeroIdentidad, int numeroCuenta, double monto) {
+    public void retirar(String numeroIdentidad, String numeroCuenta, double monto) {
         // Verificar que la cuenta exista
-        int indiceCuenta = cuentas.Buscar(numeroCuenta);
+        int indiceCuenta = cuentas.BuscarCuenta(numeroCuenta);
         if (indiceCuenta != -1) {
             // Verificar que haya saldo suficiente en la cuenta
             Cuenta cuenta = cuentas.Obtener(indiceCuenta);
