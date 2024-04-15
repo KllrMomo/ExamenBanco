@@ -1,6 +1,9 @@
 
 package bake.examenbanco;
 
+import java.io.*;
+import javax.swing.JOptionPane;
+
 public class Banco {
     private ListaSE<Cliente> clientes;
     private ListaSE<Cuenta> cuentas;
@@ -35,7 +38,7 @@ public class Banco {
             // Agregar la cuenta a la lista de cuentas del banco
             cuentas.Adiconar(cuenta);
         } else {
-            System.out.println("Cliente no encontrado.");
+            JOptionPane.showMessageDialog(null,"Cliente no encontrado.");
         }
     }
 
@@ -47,7 +50,7 @@ public class Banco {
             // Eliminar la cuenta de la lista de cuentas del banco
             cuentas.Eliminar(indiceCuenta);
         } else {
-            System.out.println("Cuenta no encontrada.");
+            JOptionPane.showMessageDialog(null,"Cuenta no encontrada.");
         }
     }
 
@@ -62,7 +65,7 @@ public class Banco {
             // Registrar la transacción de depósito
             transaccionesDeposito.Adiconar(new Transaccion(numeroIdentidad, numeroCuenta, monto));
         } else {
-            System.out.println("Cuenta no encontrada.");
+            JOptionPane.showMessageDialog(null,"Cuenta no encontrada.");
         }
     }
 
@@ -79,15 +82,15 @@ public class Banco {
                 // Registrar la transacción de retiro
                 transaccionesRetiro.Adiconar(new Transaccion(numeroIdentidad, numeroCuenta, monto));
             } else {
-                System.out.println("Saldo insuficiente.");
+                JOptionPane.showMessageDialog(null,"Saldo insuficiente.");
             }
         } else {
-            System.out.println("Cuenta no encontrada.");
+            JOptionPane.showMessageDialog(null,"Cuenta no encontrada.");
         }
     }
 
     // Método para visualizar las cuentas asociadas a un cliente y su saldo
-    public void visualizarCuentasCliente(String numeroIdentidad) {
+    public String visualizarCuentasCliente(String numeroIdentidad) {
         // Buscar el cliente por su número de identidad
         int indiceCliente = clientes.BuscarCuenta(numeroIdentidad);
         if (indiceCliente != -1) {
@@ -98,12 +101,14 @@ public class Banco {
             
             for (int i = 0; i < cuentasCliente.Longitud(); i++) {
                 Cuenta cuenta = cuentasCliente.Obtener(i);
-                System.out.println("Numero de cuenta: " + cuenta.getNumeroCuenta() + ", Saldo: " + cuenta.getSaldo());
+                JOptionPane.showMessageDialog(null,"Numero de cuenta: " + cuenta.getNumeroCuenta() + ", Saldo: " + cuenta.getSaldo());
             }
         } else {
-            System.out.println("Cliente no encontrado.");
+            JOptionPane.showMessageDialog(null,"Cliente no encontrado.");
         }
-    }
+        // Si el cliente no tiene cuentas asociadas
+        return "El cliente con número de identidad " + numeroIdentidad + " no tiene cuentas asociadas.";
+}
 
     // Método para almacenar una transacción de depósito en el log
     public void almacenarTransaccionDeposito(Transaccion transaccion) {
@@ -115,23 +120,35 @@ public class Banco {
         transaccionesRetiro.Adiconar(transaccion);
     }
 
-    // Método para consultar el log de transacciones de depósito de un cliente
-    public void consultarLogDepositos(String numeroIdentidad) {
-        for (int i = 0; i < transaccionesDeposito.Longitud(); i++) {
-            Transaccion transaccion = transaccionesDeposito.Obtener(i);
-            if (transaccion.getNumeroIdentidadCliente() == numeroIdentidad) {
-                System.out.println(transaccion);
+    // Método para consultar el log de depósitos
+    public void consultarLogDepositos() {
+        File archivoDepositos = new File("log_depositos.txt");
+        StringBuilder contenidoLog = new StringBuilder();
+
+        try (BufferedReader br = new BufferedReader(new FileReader(archivoDepositos))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                contenidoLog.append(linea).append("\n");
             }
+            JOptionPane.showMessageDialog(null, contenidoLog.toString(), "Log de Depósitos", JOptionPane.PLAIN_MESSAGE);
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "Error al leer el archivo de log de depósitos", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
-    // Método para consultar el log de transacciones de retiro de un cliente
-    public void consultarLogRetiros(String numeroIdentidad) {
-        for (int i = 0; i < transaccionesRetiro.Longitud(); i++) {
-            Transaccion transaccion = transaccionesRetiro.Obtener(i);
-            if (transaccion.getNumeroIdentidadCliente() == numeroIdentidad) {
-                System.out.println(transaccion);
+    // Método para consultar el log de retiros
+    public void consultarLogRetiros() {
+        File archivoRetiros = new File("log_retiros.txt");
+        StringBuilder contenidoLog = new StringBuilder();
+
+        try (BufferedReader br = new BufferedReader(new FileReader(archivoRetiros))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                contenidoLog.append(linea).append("\n");
             }
+            JOptionPane.showMessageDialog(null, contenidoLog.toString(), "Log de Retiros", JOptionPane.PLAIN_MESSAGE);
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "Error al leer el archivo de log de retiros", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 }
