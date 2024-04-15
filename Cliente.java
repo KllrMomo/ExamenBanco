@@ -22,7 +22,7 @@ public class Cliente {
         cuentas.Adiconar(cuenta);
     }
     
-    public void eliminarCuenta (int numeroCuenta) {
+    public void eliminarCuenta (String numeroCuenta) {
         int indiceCuenta = -1;
         for (int i = 0; i < cuentas.Longitud(); i++) {
             if (cuentas.Obtener(i).getNumeroCuenta() == numeroCuenta) {
