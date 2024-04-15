@@ -52,9 +52,9 @@ public class Banco {
     }
 
     // Método para realizar un depósito en una cuenta
-    public void depositar(String numeroIdentidad, int numeroCuenta, double monto, String nombrePersona) {
+    public void depositar(String numeroIdentidad, String numeroCuenta, double monto, String nombrePersona) {
         // Verificar que la cuenta exista
-        int indiceCuenta = cuentas.Buscar(numeroCuenta);
+        int indiceCuenta = cuentas.BuscarCuenta(numeroCuenta);
         if (indiceCuenta != -1) {
             // Actualizar el saldo de la cuenta
             Cuenta cuenta = cuentas.Obtener(indiceCuenta);
